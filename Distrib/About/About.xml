@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ModMetaData>
+	<name>RT Fusebox</name>
+	<author>Ratys</author>
+	<targetVersion>Alpha 9</targetVersion>
+	<description>
+		RT mod, provides assorted ways to prevent certain negative events.
+	</description>
+</ModMetaData>
