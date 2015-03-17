@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Buildings>
+
+  <ThingDef>
+    <defName>Building_RTMagneticShield</defName>
+    <label>magnetic shield</label>
+    <description>Protects the colony from a solar flare at a tremendous power cost, and may cause fires and headaches. While you can build more than one, having several active is useless and will only create more problems.</description>
+    <designationCategory>Power</designationCategory>
+    <tickerType>Normal</tickerType>
+
+    <eType>BuildingComplex</eType>
+    <category>Building</category>
+    <thingClass>Building</thingClass>
+
+    <graphicPath>RT_Buildings/RTMakeshiftFuse</graphicPath>
+    <graphicClass>Graphic_Single</graphicClass>
+    <drawerType>MapMeshAndRealTime</drawerType>
+    <repairEffect>Repair</repairEffect>
+    <constructEffect>ConstructMetal</constructEffect>
+    <soundImpactDefault>BulletImpactMetal</soundImpactDefault>
+    <filthLeaving>BuildingRubble</filthLeaving>
+
+    <researchPrerequisite>RTFusebox_FlareShield</researchPrerequisite>
+    <leaveResourcesWhenKilled>True</leaveResourcesWhenKilled>
+    <terrainAffordanceNeeded>Light</terrainAffordanceNeeded>
+    <altitudeLayer>Waist</altitudeLayer>
+    <passability>PassThroughOnly</passability>
+    <building>
+      <ignoreNeedsPower>True</ignoreNeedsPower>
+    </building>
+    <selectable>True</selectable>
+    <rotatable>False</rotatable>
+    <fillPercent>0.3</fillPercent>
+    <pathCost>30</pathCost>
+    <statBases>
+      <MaxHealth>100</MaxHealth>
+      <WorkToMake>500</WorkToMake>
+      <Flammability>1.0</Flammability>
+      <Beauty>-10</Beauty>
+    </statBases>
+    <costList>
+      <Steel>25</Steel>
+    </costList>
+
+    <comps>
+      <li>
+        <compClass>CompPowerTrader</compClass>
+        <basePowerConsumption>50</basePowerConsumption>
+        <shortCircuitInRain>True</shortCircuitInRain>
+        <startElectricalFires>True</startElectricalFires>
+        <soundPowerOn>PowerOnSmall</soundPowerOn>
+        <soundPowerOff>PowerOffSmall</soundPowerOff>
+      </li>
+      <li Class="RTFusebox.CompProperties_RTFusebox">
+        <compClass>RTFusebox.CompRTFlareProtector</compClass>
+        <causeHeadaches>True</causeHeadaches>
+        <idleCost>50</idleCost>
+        <shieldingCost>25000</shieldingCost>
+      </li>
+    </comps>
+  </ThingDef>
+
+</Buildings>

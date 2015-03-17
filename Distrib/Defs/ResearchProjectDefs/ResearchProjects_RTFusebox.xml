@@ -22,5 +22,17 @@
       <li>RTFusebox_BasicFuses</li>
     </prerequisites>
   </ResearchProjectDef>
+
+  <ResearchProjectDef>
+    <defName>RTFusebox_FlareShield</defName>
+    <label>solar flare shielding</label>
+    <description>Construct a magnetic shield that will protect electric devices in your colony from solar flares.</description>
+    <totalCost>1000</totalCost>
+    <researchMods>
+      <li>
+        <specialAction>RTFusebox.ResearchModsSpecial.FlareProtectedInjector</specialAction>
+      </li>
+    </researchMods>
+  </ResearchProjectDef>
   
 </ResearchProjectDefs>
