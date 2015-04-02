@@ -50,12 +50,12 @@ namespace RTFusebox
         #region Overrides
         public override void PostSpawnSetup()
         {
-            MapComponent_RTSolarFlareSwapper.shields.Add(this);
+            MapComponent_RTFusebox.shields.Add(this);
         }
 
         public override void PostDeSpawn()
         {
-            MapComponent_RTSolarFlareSwapper.shields.Remove(this);
+            MapComponent_RTFusebox.shields.Remove(this);
         }
 
         public override string CompInspectStringExtra()

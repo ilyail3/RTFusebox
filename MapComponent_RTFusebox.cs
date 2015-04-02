@@ -12,7 +12,7 @@ namespace RTFusebox
     /// <summary>
     /// Swaps the dud solar flare with actual flare if no shield is present.
     /// </summary>
-    public class MapComponent_RTSolarFlareSwapper : MapComponent
+    public class MapComponent_RTFusebox : MapComponent
     {
         public static List<CompRTFlareProtector> shields = new List<CompRTFlareProtector>();
         private bool shieldsActivated = false;
