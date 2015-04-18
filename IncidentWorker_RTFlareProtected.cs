@@ -27,9 +27,9 @@ namespace RTFusebox
                 return false;
             }
             //int ticksToExpire = Rand.Range(8000, 24000);
-            int ticksToExpire = Rand.Range(1000, 2000);
+            int ticksToExpire = Rand.Range((int)((1 / GenTime.TicksToDays(1)) / 4), (int)(1 / GenTime.TicksToDays(1)));     // Range between 1/4th of a day and a full day.
             Find.MapConditionManager.RegisterCondition(new MapCondition_RTSolarFlare(ticksToExpire));
-            Find.History.AddGameEvent("FlareProtected".Translate(), GameEventType.BadNonUrgent, true, string.Empty);
+            Find.LetterStack.ReceiveLetter("LetterLabelSolarFlare".Translate(), "LetterSolarFlare".Translate(), LetterType.BadNonUrgent, null);
             return true;
         }
     }

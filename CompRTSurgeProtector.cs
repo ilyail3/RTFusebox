@@ -23,7 +23,7 @@ namespace RTFusebox
         public override string CompInspectStringExtra()
         {
             StringBuilder stringBuilder = new StringBuilder();
-            stringBuilder.Append("CompRTSurgeProtector_ProtectsAgainst".Translate(new object[] { (Math.Floor(compProps.surgeMitigation * (parent.Health - compProps.reserveHealthPercent * parent.MaxHealth) / parent.MaxHealth)).ToString("F0") }));
+            stringBuilder.Append("CompRTSurgeProtector_ProtectsAgainst".Translate(new object[] { (Math.Floor(compProps.surgeMitigation * (parent.HitPoints - compProps.reserveHealthPercent * parent.MaxHitPoints) / parent.MaxHitPoints)).ToString("F0") }));
             if (compProps.reserveHealthPercent == 0.0f)
             {
                 stringBuilder.Append(" " + "CompRTSurgeProtector_SingleUse".Translate());
@@ -40,8 +40,8 @@ namespace RTFusebox
         /// <returns>Mitigated amount.</returns>
         public float MitigateDischarge(float amount)
         {
-            float amountMitigated = Mathf.Clamp(Math.Min((float)Math.Floor(compProps.surgeMitigation * (parent.Health - compProps.reserveHealthPercent * parent.MaxHealth) / parent.MaxHealth), amount), 0, amount);
-            parent.TakeDamage(new DamageInfo(DamageDefOf.Bomb, (int)(parent.MaxHealth * amountMitigated / compProps.surgeMitigation), null, null, null));
+            float amountMitigated = Mathf.Clamp(Math.Min((float)Math.Floor(compProps.surgeMitigation * (parent.HitPoints - compProps.reserveHealthPercent * parent.MaxHitPoints) / parent.MaxHitPoints), amount), 0, amount);
+            parent.TakeDamage(new DamageInfo(DamageDefOf.Bomb, (int)(parent.MaxHitPoints * amountMitigated / compProps.surgeMitigation), null, null, null));
             return amountMitigated;
         }
     }

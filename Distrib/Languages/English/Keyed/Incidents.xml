@@ -5,6 +5,4 @@
   
   <ShortCircuitProtected>A fault in {0} has caused a short circuit.\n\nAll {1} Wd of energy in the connected batteries has been discharged, but any serious damage was prevented by the fuses.</ShortCircuitProtected>
 
-  <FlareProtected>A solar flare has begun.\n\nYour magnetic shield should protect any electric devices from the intense radiation, but radio communications will be near impossible.\n\nIt should pass in about a day.</FlareProtected>
-  
  </LanguageData>

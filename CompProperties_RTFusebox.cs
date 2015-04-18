@@ -19,7 +19,10 @@ namespace RTFusebox
 
         public float shieldingCost = 0;
         public float idleCost = 0;
-        public bool causeHeadaches = false;
+        public float heatingPerTick = 0.0f;
+        public string rotatorPath = "RT_Buildings/RTFlareShieldTop";
+        public float rotatorSpeedIdle = 0.5f;
+        public float rotatorSpeedWorking = 10.0f;
 
         public CompProperties_RTFusebox()
         {

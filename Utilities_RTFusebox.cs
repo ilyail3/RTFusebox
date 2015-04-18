@@ -19,9 +19,9 @@ namespace RTFusebox
         /// </summary>
         /// <param name="parent"></param>
         /// <returns>PowerState of parent.</returns>
-        public static PowerState CheckPower(this ThingWithComponents parent)
+        public static PowerState CheckPower(this Thing parent)
         {
-            CompPowerTrader powerComp = parent.GetComp<CompPowerTrader>();
+            CompPowerTrader powerComp = parent.TryGetComp<CompPowerTrader>();
             if (powerComp != null)
             {
                 if (powerComp.PowerOn)
@@ -36,6 +36,20 @@ namespace RTFusebox
             else
             {
                 return PowerState.None;
+            }
+        }
+
+        /// <summary>
+        /// NRE-safe way to toggle glow.
+        /// </summary>
+        /// <param name="parent"></param>
+        /// <param name="state"></param>
+        public static void GlowOn(this Thing parent, bool state)
+        {
+            CompGlower glowComp = parent.TryGetComp<CompGlower>();
+            if (glowComp != null)
+            {
+                glowComp.Lit = state;
             }
         }
     }

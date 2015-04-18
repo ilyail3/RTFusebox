@@ -6,11 +6,6 @@
     <label>basic fuses</label>
     <description>Build makeshift fuses out of steel strips. Each one is enough to dissipate up to 2500 Wd (over two standard batteries) discharge, but will burn out if exceeded.</description>
     <totalCost>500</totalCost>
-    <researchMods>
-      <li>
-        <specialAction>RTFusebox.ResearchModsSpecial.SurgeProtectedInjector</specialAction>
-      </li>
-    </researchMods>
   </ResearchProjectDef>
 
   <ResearchProjectDef>
@@ -28,11 +23,6 @@
     <label>solar flare shielding</label>
     <description>Construct a magnetic shield that will protect electric devices in your colony from solar flares.</description>
     <totalCost>1000</totalCost>
-    <researchMods>
-      <li>
-        <specialAction>RTFusebox.ResearchModsSpecial.FlareProtectedInjector</specialAction>
-      </li>
-    </researchMods>
   </ResearchProjectDef>
   
 </ResearchProjectDefs>

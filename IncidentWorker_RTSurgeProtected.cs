@@ -17,9 +17,10 @@ namespace RTFusebox
         private IEnumerable<Building_Battery> FullBatteries()
         {
             return
-                from Building_Battery battery in Find.ListerBuildings.AllBuildingsColonistOfEType(EntityType.Building_Battery)
-                where battery.GetComp<CompPowerBattery>().StoredEnergy > 50f
-                select battery;
+                from Building battery in Find.ListerBuildings.allBuildingsColonist
+                where battery.TryGetComp<CompPowerBattery>() != null
+                && battery.TryGetComp<CompPowerBattery>().StoredEnergy > 50f
+                select battery as Building_Battery;
         }
 
         public override bool StorytellerCanUseNow()
@@ -38,8 +39,7 @@ namespace RTFusebox
             PowerNet powerNet = batteries.RandomElement<Building_Battery>().PowerComp.PowerNet;     // Choose a powernet with batteries.
             List<CompPower> victimList = (
                 from transmitter in powerNet.transmitters
-                where transmitter.parent.def.eType == EntityType.Building_PowerConduit
-                   || transmitter.parent.def.eType == EntityType.Wall
+                where transmitter.parent.def == ThingDefOf.PowerConduit
                 select transmitter).ToList<CompPower>();
             if (victimList.Count == 0)
             {       // Form a list of things that can get shorted on the chosen powerned.
@@ -86,13 +86,9 @@ namespace RTFusebox
                     victim.TakeDamage(new DamageInfo(DamageDefOf.Bomb, 200, null, null, null));
                 }
                 string text = "a thing";
-                if (victim.def.eType == EntityType.Building_PowerConduit)
+                if (victim.def == ThingDefOf.PowerConduit)
                 {
                     text = "AnElectricalConduit".Translate();
-                }
-                else if (victim.def.eType == EntityType.Wall)
-                {
-                    text = "AWallsPowerConduit".Translate();
                 }
                 StringBuilder stringBuilder = new StringBuilder();
                 stringBuilder.Append("ShortCircuit".Translate(new object[]{
@@ -111,7 +107,7 @@ namespace RTFusebox
                     stringBuilder.AppendLine();
                     stringBuilder.Append("ShortCircuitWasHuge".Translate());
                 }
-                Find.History.AddGameEvent(stringBuilder.ToString(), GameEventType.BadNonUrgent, true, victim.Position, string.Empty);
+                Find.LetterStack.ReceiveLetter("LetterLabelShortCircuit".Translate(), stringBuilder.ToString(), LetterType.BadNonUrgent, victim.Position, null);
                 return true;
             }
             else if (energyTotal > 0)
@@ -132,13 +128,9 @@ namespace RTFusebox
                     victim.TakeDamage(new DamageInfo(DamageDefOf.Bomb, 200, null, null, null));
                 }
                 string text = "a thing";
-                if (victim.def.eType == EntityType.Building_PowerConduit)
+                if (victim.def == ThingDefOf.PowerConduit)
                 {
                     text = "AnElectricalConduit".Translate();
-                }
-                else if (victim.def.eType == EntityType.Wall)
-                {
-                    text = "AWallsPowerConduit".Translate();
                 }
                 StringBuilder stringBuilder = new StringBuilder();
                 stringBuilder.Append("ShortCircuitPartial".Translate(new object[]{
@@ -157,27 +149,23 @@ namespace RTFusebox
                     stringBuilder.AppendLine();
                     stringBuilder.Append("ShortCircuitWasHuge".Translate());
                 }
-                Find.History.AddGameEvent(stringBuilder.ToString(), GameEventType.BadNonUrgent, true, victim.Position, string.Empty);
+                Find.LetterStack.ReceiveLetter("LetterLabelShortCircuit".Translate(), stringBuilder.ToString(), LetterType.BadNonUrgent, victim.Position, null);
                 return true;
             }
             else
             {       // Full mitigation.
                 Thing victim = victimList.RandomElement<CompPower>().parent;
-                victim.TakeDamage(new DamageInfo(DamageDefOf.Bomb, Rand.Range(0, (int)Math.Floor(0.1f * victim.MaxHealth)), null, null, null));
+                victim.TakeDamage(new DamageInfo(DamageDefOf.Bomb, Rand.Range(0, (int)Math.Floor(0.1f * victim.MaxHitPoints)), null, null, null));
                 string text = "a thing";
-                if (victim.def.eType == EntityType.Building_PowerConduit)
+                if (victim.def == ThingDefOf.PowerConduit)
                 {
                     text = "AnElectricalConduit".Translate();
-                }
-                else if (victim.def.eType == EntityType.Wall)
-                {
-                    text = "AWallsPowerConduit".Translate();
                 }
                 StringBuilder stringBuilder = new StringBuilder();
                 stringBuilder.Append("ShortCircuitProtected".Translate(new object[]{
 				text,
 				energyTotalHistoric.ToString("F0")}));
-                Find.History.AddGameEvent(stringBuilder.ToString(), GameEventType.BadNonUrgent, true, victim.Position, string.Empty);
+                Find.LetterStack.ReceiveLetter("LetterLabelShortCircuit".Translate(), stringBuilder.ToString(), LetterType.BadNonUrgent, victim.Position, null);
                 return true;
             }
         }

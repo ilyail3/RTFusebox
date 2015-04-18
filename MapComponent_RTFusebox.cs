@@ -10,7 +10,7 @@ using RimWorld;
 namespace RTFusebox
 {
     /// <summary>
-    /// Swaps the dud solar flare with actual flare if no shield is present.
+    /// Swaps the dud solar flare with actual flare if no shield is present, and makes side effects happen.
     /// </summary>
     public class MapComponent_RTFusebox : MapComponent
     {
@@ -41,10 +41,31 @@ namespace RTFusebox
                             CompPowerTrader powerComp = shield.parent.GetComp<CompPowerTrader>();
                             if (shield.isActive && powerComp != null)
                             {
-                                powerComp.powerOutput = -shield.shieldingCost;
+                                powerComp.powerOutputInt = -shield.shieldingCost;
                             }
                         }
                         shieldsActivated = true;
+                    }
+                    else
+                    {
+                        foreach (CompRTFlareProtector shield in shields)
+                        {
+                            Room room = shield.parent.GetRoom();
+                            if (room != null
+                                && !room.UsesOutdoorTemperature)
+                            {
+                                room.Temperature += shield.heatingPerTick;
+                            }
+                        }
+                        List<Building_CommsConsole> comms = Find.ListerBuildings.AllBuildingsColonistOfClass<Building_CommsConsole>().ToList();
+                        foreach (Building_CommsConsole comm in comms)
+                        {
+                            CompPowerTrader component = comm.TryGetComp<CompPowerTrader>();
+                            if (component != null)
+                            {
+                                component.PowerOn = false;
+                            }
+                        }
                     }
                 }
             }
@@ -57,7 +78,7 @@ namespace RTFusebox
                         CompPowerTrader powerComp = shield.parent.GetComp<CompPowerTrader>();
                         if (powerComp != null)
                         {
-                            powerComp.powerOutput = -shield.idleCost;
+                            powerComp.powerOutputInt = -shield.idleCost;
                         }
                     }
                     shieldsActivated = false;
