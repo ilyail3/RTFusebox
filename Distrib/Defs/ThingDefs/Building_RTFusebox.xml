@@ -10,8 +10,11 @@
     <category>Building</category>
     <thingClass>Building</thingClass>
 
-    <graphicPath>RT_Buildings/RTFusebox</graphicPath>
-    <graphicClass>Graphic_Multi</graphicClass>
+    <graphicData>
+      <texPath>RT_Buildings/RTFusebox</texPath>
+      <graphicClass>Graphic_Multi</graphicClass>
+      <drawSize>(2,1)</drawSize>
+    </graphicData>
     <drawerType>MapMeshAndRealTime</drawerType>
     <repairEffect>Repair</repairEffect>
     <constructEffect>ConstructMetal</constructEffect>

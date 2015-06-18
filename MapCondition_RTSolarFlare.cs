@@ -14,25 +14,14 @@ namespace RTFusebox
     /// </summary>
     public class MapCondition_RTSolarFlare : MapCondition
     {
-        public MapCondition_RTSolarFlare()
-        {
-
-        }
-
-        public MapCondition_RTSolarFlare(int duration)
-            : base(DefDatabase<MapConditionDef>.GetNamed("RTFusebox_SolarFlare"), duration)
-        {
-
-        }
-
         public void Kill()
         {
-            this.ticksToExpire = 0;
+            this.ticksLeft = 0;
         }
 
         public int GetTicksToExpire()
         {
-            return this.ticksToExpire;
+            return this.ticksLeft;
         }
     }
 }

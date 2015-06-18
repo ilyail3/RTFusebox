@@ -2,12 +2,12 @@
 <ModMetaData>
 	<name>RT Fusebox</name>
 	<author>Ratys</author>
-	<targetVersion>Alpha 10</targetVersion>
+	<targetVersion>Alpha 11</targetVersion>
 	<description>
 		RT mod, provides assorted ways to prevent certain negative events.
 		
     Magnetic shield graphics by Calamity/daveboy2000.
     
-		Korean translation (outdated?) courtesy of Latta.
+		Korean translation courtesy of Latta.
 	</description>
 </ModMetaData>

@@ -60,7 +60,7 @@ namespace RTFusebox       // Replace with yours.
                         IncidentDef incidentDef = DefDatabase<IncidentDef>.GetNamed("ShortCircuit");
                         incidentDef.workerClass = typeof(IncidentWorker_RTSurgeProtected);
                         incidentDef = DefDatabase<IncidentDef>.GetNamed("SolarFlare");
-                        incidentDef.workerClass = typeof(IncidentWorker_RTFlareProtected);
+                        incidentDef.mapCondition = DefDatabase<MapConditionDef>.GetNamed("RTFusebox_SolarFlare");
                         #endregion
                         #region Irrelevant
                     }

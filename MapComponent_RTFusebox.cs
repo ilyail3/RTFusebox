@@ -23,14 +23,14 @@ namespace RTFusebox
             {       // Run every 10th tick.
                 return;
             }
-            MapCondition_RTSolarFlare mapCondition = Find.MapConditionManager.GetActiveCondition<MapCondition_RTSolarFlare>();
+            MapCondition mapCondition = Find.MapConditionManager.GetActiveCondition(DefDatabase<MapConditionDef>.GetNamed("RTFusebox_SolarFlare"));
             if (mapCondition != null)
             {
                 if (shields.Count == 0 || !shields.Exists((CompRTFlareProtector shield) => shield.isActive))
                 {
-                    int ticksToExpire = mapCondition.GetTicksToExpire();
-                    mapCondition.Kill();
-                    Find.MapConditionManager.RegisterCondition(new MapCondition(MapConditionDefOf.SolarFlare, ticksToExpire));
+                    int ticksToExpire = mapCondition.ticksLeft;
+                    mapCondition.ticksLeft = 0;
+                    Find.MapConditionManager.RegisterCondition(MapConditionMaker.MakeCondition(MapConditionDefOf.SolarFlare, ticksToExpire));
                 }
                 else
                 {

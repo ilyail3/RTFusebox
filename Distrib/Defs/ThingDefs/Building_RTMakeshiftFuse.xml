@@ -10,8 +10,10 @@
     <category>Building</category>
     <thingClass>Building</thingClass>
 
-    <graphicPath>RT_Buildings/RTMakeshiftFuse</graphicPath>
-    <graphicClass>Graphic_Single</graphicClass>
+    <graphicData>
+      <texPath>RT_Buildings/RTMakeshiftFuse</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
     <drawerType>MapMeshAndRealTime</drawerType>
     <repairEffect>Repair</repairEffect>
     <constructEffect>ConstructMetal</constructEffect>

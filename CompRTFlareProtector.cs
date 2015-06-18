@@ -90,7 +90,7 @@ namespace RTFusebox
         {
             if (isActive)
             {
-                if (Find.MapConditionManager.GetActiveCondition<MapCondition_RTSolarFlare>() != null)
+                if (Find.MapConditionManager.GetActiveCondition(DefDatabase<MapConditionDef>.GetNamed("RTFusebox_SolarFlare")) != null)
                 {
                     parent.GlowOn(true);
                     angle += compProps.rotatorSpeedWorking * tickAmount;

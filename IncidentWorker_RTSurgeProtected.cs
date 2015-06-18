@@ -23,7 +23,7 @@ namespace RTFusebox
                 select battery as Building_Battery;
         }
 
-        public override bool StorytellerCanUseNow()
+        protected override bool StorytellerCanUseNowSub()
         {
             return this.FullBatteries().Any<Building_Battery>();
         }

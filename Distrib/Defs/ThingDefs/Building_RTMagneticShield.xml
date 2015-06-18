@@ -11,8 +11,11 @@
     <category>Building</category>
     <thingClass>Building</thingClass>
 
-    <graphicPath>RT_Buildings/RTFlareShieldBase</graphicPath>
-    <graphicClass>Graphic_Single</graphicClass>
+    <graphicData>
+      <texPath>RT_Buildings/RTFlareShieldBase</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <drawSize>(2,2)</drawSize>
+    </graphicData>
     <drawerType>MapMeshAndRealTime</drawerType>
     <repairEffect>Repair</repairEffect>
     <constructEffect>ConstructMetal</constructEffect>
