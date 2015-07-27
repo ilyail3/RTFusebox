@@ -54,10 +54,10 @@ namespace RTFusebox
 
             float energyTotal = 0f;
             foreach (CompPowerBattery battery in powerNet.batteryComps)
-            {       // Discharge batteries.
+            {       
                 energyTotal += battery.StoredEnergy;
-                battery.DrawPower(battery.StoredEnergy);
             }
+
             float energyTotalHistoric = energyTotal;
             foreach (Building surgeProtector in surgeProtectors)
             {       // Try to mitigate the discharge with fuses.
@@ -67,6 +67,19 @@ namespace RTFusebox
                     break;
                 }
             }
+
+            // Discharge all unprotected energy + half the protected sum
+            float discharge = energyTotal + ((energyTotalHistoric - energyTotal) / 2.0f);
+            foreach (CompPowerBattery battery in powerNet.batteryComps)
+            {
+                float batteryDischarge = Math.Min(battery.StoredEnergy, discharge);
+                battery.DrawPower(batteryDischarge);
+
+                discharge -= batteryDischarge;
+                    if (discharge <= 0)
+                        break;
+            }
+
 
             if (energyTotal == energyTotalHistoric)
             {       // No mitigation, vanilla behavior.
